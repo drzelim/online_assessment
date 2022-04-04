@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Онлайн-оценка</title>
+</head>
+<body>
+    <div class="modal">
+      <h2>Онлайн оценка</h2>
+        <div class="modal__form-wrapper">
+            <form class="form" method="post" action="" enctype="multipart/form-data">
+              <div class="modal__input-wrapper">
+                <div class="modal__static-entry-fields">
+                  <input class="modal__input modal__username" name="user-name" type="text" placeholder="Введите имя">
+                  <input type="email" class="modal__input modal__user-email" name="email" placeholder="Введите email">
+                  <input type="tel" class="modal__input modal__user-email" name="tel" placeholder="Телефон">
+                  <select class="modal__input" name="type" id="">
+                    <option value="jewel" selected>Ювелирное изделие</option>
+                    <option value="gems">Драгоценные камни</option>
+                    <option value="fur-coat">Шубы</option>
+                    <option value="apple">Техника Apple</option>
+                    <option value="antiques">Антиквариат</option>
+                    <option value="other">Другое</option>
+                  </select>
+                </div>
+                <div class="modal__dynamic-entry-fields">
+
+                </div>
+                <div class="modal__comment">
+                    <textarea class="modal__comment-field" name="comment" cols="40" rows="3"></textarea>
+                </div>
+              </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
