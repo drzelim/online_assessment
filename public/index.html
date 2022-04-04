@@ -8,16 +8,16 @@
     <title>Онлайн-оценка</title>
 </head>
 <body>
-    <div class="modal">
+    <div class="assessment">
       <h2>Онлайн оценка</h2>
-        <div class="modal__form-wrapper">
+        <div class="assessment__form-wrapper">
             <form class="form" method="post" action="" enctype="multipart/form-data">
-              <div class="modal__input-wrapper">
-                <div class="modal__static-entry-fields">
-                  <input class="modal__input modal__username" name="user-name" type="text" placeholder="Введите имя">
-                  <input type="email" class="modal__input modal__user-email" name="email" placeholder="Введите email">
-                  <input type="tel" class="modal__input modal__user-email" name="tel" placeholder="Телефон">
-                  <select class="modal__input" name="type" id="">
+              <div class="assessment__input-wrapper">
+                <div class="assessment__static-entry-fields">
+                  <input class="assessment__input assessment__username" name="user-name" type="text" placeholder="Введите имя">
+                  <input type="email" class="assessment__input assessment__user-email" name="email" placeholder="Введите email">
+                  <input type="tel" class="assessment__input assessment__user-email" name="tel" placeholder="Телефон">
+                  <select class="assessment__input" name="type" id="">
                     <option value="jewel" selected>Ювелирное изделие</option>
                     <option value="gems">Драгоценные камни</option>
                     <option value="fur-coat">Шубы</option>
@@ -26,11 +26,27 @@
                     <option value="other">Другое</option>
                   </select>
                 </div>
-                <div class="modal__dynamic-entry-fields">
+                <div class="assessment__dynamic-entry-fields">
 
                 </div>
-                <div class="modal__comment">
-                    <textarea class="modal__comment-field" name="comment" cols="40" rows="3"></textarea>
+                <div class="assessment__comment">
+                    <textarea class="assessment__comment-field" name="comment" cols="40" rows="3"></textarea>
+                </div>
+                <div class="assessment__footer">
+                  <input class="assessment__form-submit" type="submit">
+                  <div>Или свяжитесь с нами <br>
+                    через мессенджеры:</div>
+                  <div class="social">
+                    <div class="social__ref">
+                      <img src="img/whatsapp.svg" alt="WhatsApp" width="23" height="23">
+                    </div>
+                    <div class="social__ref">
+                      <img src="img/viber.svg" alt="Viber">
+                    </div>
+                    <div class="social__ref">
+                      <img src="img/telegram.svg" alt="Telegram">
+                    </div>
+                  </div>
                 </div>
               </div>
             </form>
