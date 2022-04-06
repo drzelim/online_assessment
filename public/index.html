@@ -8,15 +8,15 @@
     <title>Онлайн-оценка</title>
 </head>
 <body>
-    <div class="assessment">
+    <div class="assessment" id="assessment">
       <h2>Онлайн оценка</h2>
         <div class="assessment__form-wrapper">
-            <form class="form" method="post" action="" enctype="multipart/form-data">
+            <form class="form" method="post" action="https://webhook.site/9f7eea7b-e9c7-40a7-8a9b-8ca8101d5e98?" enctype="multipart/form-data" id="assessment-form">
               <div class="assessment__input-wrapper">
                 <div class="assessment__static-entry-fields">
-                  <input class="assessment__input assessment__username" name="user-name" type="text" placeholder="Введите имя">
+                  <input class="assessment__input assessment__username" name="user-name" type="text" placeholder="Введите имя" required>
                   <input type="email" class="assessment__input assessment__user-email" name="email" placeholder="Введите email">
-                  <input type="tel" class="assessment__input assessment__user-email" name="tel" placeholder="Телефон">
+                  <input type="tel" class="assessment__input assessment__user-tel" name="tel" placeholder="Телефон">
                   <select class="assessment__input" name="type" id="assessment-select">
                     <option value="jewel" selected>Ювелирное изделие</option>
                     <option value="gems">Драгоценные камни</option>
@@ -26,7 +26,7 @@
                     <option value="other">Другое</option>
                   </select>
                 </div>
-                <div id="root" class="assessment__dynamic-entry-fields">
+                <div id="assessment-root" class="assessment__dynamic-entry-fields">
                   <!-- Сюда нужно рендерить поля -->
 
                 </div>
@@ -36,7 +36,7 @@
                 <div class="assessment__footer">
                   <input class="assessment__form-submit" type="submit">
                   <div class="social">
-                    <div class="social__info">Или свяжитесь с нами <br>
+                    <div class="social__info">Или свяжитесь с нами
                       через мессенджеры:</div>
                     <div class="social__ref">
                       <a href="https://wa.me/79000000000">
@@ -58,7 +58,7 @@
               </div>
               <div class="assessment__photo">
                 <div class="assessment__photo-upload">
-                  <label class="assessment__photo-container" for="photos">
+                  <label class="assessment__add-photo" for="photos">
                     <input class="visually-hidden" id="photos" type="file" name="photos" multiple>
                     <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M40 10H69C69.5523 10 70 10.4477 70 11V69C70 69.5523 69.5523 70 69 70H11C10.4477 70 10 69.5523 10 69V40" stroke="#888888" stroke-width="1.5"/>
@@ -68,10 +68,8 @@
                       <span class="photos__text">Загрузить фотографии</span>
                   </label>
                 </div>
-                <div class="assessment__photo-container">
-                  <ul class="assessment__photo-list">
+                <div class="assessment__photo-container" id="add-photo">
 
-                  </ul>
                 </div>
               </div>
             </form>

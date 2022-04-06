@@ -1,7 +1,5 @@
-const RenderPosition = {
-  AFTERBEGIN: 'afterbegin',
-  BEFOREEND: 'beforeend'
-};
+import { RenderPosition } from "./const";
+
 
 export const createElement = (template) => {
   const newElement = document.createElement('div');
@@ -21,10 +19,6 @@ export const render = (container, element, place = RenderPosition.BEFOREEND) => 
       break;
   }
 };
-
-export const rerender = (value) => {
-
-}
 
 
 export const remove = (component) => {

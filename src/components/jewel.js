@@ -4,8 +4,8 @@ const createJewelTemplate = () => {
   return (
     `<div>
       <input class="assessment__input assessment__input--dynamic" name="metal" type="text" placeholder="Металл">
-      <input class="assessment__input assessment__input--dynamic" name="sample" type="number" placeholder="Проба">
-      <input class="assessment__input assessment__input--dynamic" name="weight" type="number" placeholder="Вес">
+      <input class="assessment__input assessment__input--dynamic" name="sample" type="number" step="1" placeholder="Проба">
+      <input class="assessment__input assessment__input--dynamic" name="weight" type="number" step="0.1" placeholder="Вес">
     </div>`
   )
 }
