@@ -2,7 +2,7 @@ import Abstract from "./abstarct";
 
 const createAppleTemplate = () => {
   return (
-    `<div>
+    `<div class="assessment__dynamic-container">
       <input class="assessment__input assessment__input--dynamic" name="metal" type="text" placeholder="Модель">
       <input class="assessment__input assessment__input--dynamic" name="sample" type="number" step="1" placeholder="Объем памяти">
     </div>`

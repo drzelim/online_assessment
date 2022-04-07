@@ -4,7 +4,6 @@ import Api from "./api";
 const URL = 'https://webhook.site/9f7eea7b-e9c7-40a7-8a9b-8ca8101d5e98?';
 
 const assessment = document.querySelector('#assessment');
-// const root = assessment.getElementById('assessment-root');
 const select = assessment.querySelector('#assessment-select');
 const inputPhotos = assessment.querySelector('#photos');
 const housePreview = assessment.querySelector('#add-photo');

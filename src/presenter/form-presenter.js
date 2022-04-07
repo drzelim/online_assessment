@@ -141,7 +141,7 @@ export default class FormPresenter {
       console.log(this._phoneField.validity)
 
       if (this._emailField.value === '' && this._phoneField.value === '') {
-        alert('Должно быть заполнено хотя бы одно поле: email или Телефон')
+        alert('Должно быть заполнено хотя бы одно поле: email или Телефон');
         return;
       }
 

@@ -12,64 +12,66 @@
       <h2>Онлайн оценка</h2>
         <div class="assessment__form-wrapper">
             <form class="form" method="post" action="https://webhook.site/9f7eea7b-e9c7-40a7-8a9b-8ca8101d5e98?" enctype="multipart/form-data" id="assessment-form">
-              <div class="assessment__input-wrapper">
-                <div class="assessment__static-entry-fields">
-                  <input class="assessment__input assessment__username" name="user-name" type="text" placeholder="Введите имя" required>
-                  <input type="email" class="assessment__input assessment__user-email" name="email" placeholder="Введите email">
-                  <input type="tel" class="assessment__input assessment__user-tel" name="tel" placeholder="Телефон">
-                  <select class="assessment__input" name="type" id="assessment-select">
-                    <option value="jewel" selected>Ювелирное изделие</option>
-                    <option value="gems">Драгоценные камни</option>
-                    <option value="fur-coat">Шубы</option>
-                    <option value="apple">Техника Apple</option>
-                    <option value="antiques">Антиквариат</option>
-                    <option value="other">Другое</option>
-                  </select>
-                </div>
-                <div id="assessment-root" class="assessment__dynamic-entry-fields">
-                  <!-- Сюда нужно рендерить поля -->
+              <div class="assessment__wrapper">
+                <div class="assessment__input-wrapper">
+                  <div class="assessment__static-entry-fields">
+                    <input class="assessment__input assessment__username" name="user-name" type="text" placeholder="Введите имя" required>
+                    <input type="email" class="assessment__input assessment__user-email" name="email" placeholder="Введите email">
+                    <input type="tel" class="assessment__input assessment__user-tel" name="tel" placeholder="Телефон">
+                    <select class="assessment__input" name="type" id="assessment-select">
+                      <option value="jewel" selected>Ювелирное изделие</option>
+                      <option value="gems">Драгоценные камни</option>
+                      <option value="fur-coat">Шубы</option>
+                      <option value="apple">Техника Apple</option>
+                      <option value="antiques">Антиквариат</option>
+                      <option value="other">Другое</option>
+                    </select>
+                  </div>
+                  <div id="assessment-root" class="assessment__dynamic-entry-fields">
+                    <!-- Сюда нужно рендерить поля -->
 
+                  </div>
+                  <div class="assessment__comment">
+                      <textarea class="assessment__comment-field" name="comment" cols="40" rows="3" placeholder="Дополнительная информация"></textarea>
+                  </div>
                 </div>
-                <div class="assessment__comment">
-                    <textarea class="assessment__comment-field" name="comment" cols="40" rows="3" placeholder="Дополнительная информация"></textarea>
-                </div>
-                <div class="assessment__footer">
-                  <input class="assessment__form-submit" type="submit">
-                  <div class="social">
-                    <div class="social__info">Или свяжитесь с нами
-                      через мессенджеры:</div>
-                    <div class="social__ref">
-                      <a href="https://wa.me/79000000000">
-                        <img src="img/whatsapp.svg" alt="WhatsApp" width="23" height="23">
-                      </a>
-                    </div>
-                    <div class="social__ref">
-                      <a href="#">
-                        <img src="img/viber.svg" alt="Viber" width="24" height="24">
-                      </a>
-                    </div>
-                    <div class="social__ref">
-                      <a href="#">
-                        <img src="img/telegram.svg" alt="Telegram" width="22" height="17">
-                      </a>
-                    </div>
+                <div class="assessment__photo">
+                  <div class="assessment__photo-upload">
+                    <label class="assessment__add-photo" for="photos">
+                      <input class="visually-hidden" id="photos" type="file" name="photos" multiple>
+                      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M40 10H69C69.5523 10 70 10.4477 70 11V69C70 69.5523 69.5523 70 69 70H11C10.4477 70 10 69.5523 10 69V40" stroke="#888888" stroke-width="1.5"/>
+                        <path d="M16.667 56.6663L35.3337 33.333L46.667 48.1815L51.667 41.8179L63.3337 56.6663H40.0003H16.667Z" stroke="#888888" stroke-width="1.5"/>
+                        <path d="M20.0003 6.66699V33.3337M33.3337 20.0003H6.66699" stroke="#888888" stroke-width="1.5"/>
+                        </svg>
+                        <span class="photos__text">Загрузить фотографии</span>
+                    </label>
+                  </div>
+                  <div class="assessment__photo-container" id="add-photo">
+
                   </div>
                 </div>
               </div>
-              <div class="assessment__photo">
-                <div class="assessment__photo-upload">
-                  <label class="assessment__add-photo" for="photos">
-                    <input class="visually-hidden" id="photos" type="file" name="photos" multiple>
-                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M40 10H69C69.5523 10 70 10.4477 70 11V69C70 69.5523 69.5523 70 69 70H11C10.4477 70 10 69.5523 10 69V40" stroke="#888888" stroke-width="1.5"/>
-                      <path d="M16.667 56.6663L35.3337 33.333L46.667 48.1815L51.667 41.8179L63.3337 56.6663H40.0003H16.667Z" stroke="#888888" stroke-width="1.5"/>
-                      <path d="M20.0003 6.66699V33.3337M33.3337 20.0003H6.66699" stroke="#888888" stroke-width="1.5"/>
-                      </svg>
-                      <span class="photos__text">Загрузить фотографии</span>
-                  </label>
-                </div>
-                <div class="assessment__photo-container" id="add-photo">
 
+              <div class="assessment__footer">
+                <input class="assessment__form-submit" type="submit">
+                <div class="social">
+                  <span class="social__info">Или свяжитесь с нами <br> через мессенджеры:</span>
+                  <div class="social__ref">
+                    <a href="https://wa.me/79000000000">
+                      <img src="img/whatsapp.svg" alt="WhatsApp" width="23" height="23">
+                    </a>
+                  </div>
+                  <div class="social__ref">
+                    <a href="#">
+                      <img src="img/viber.svg" alt="Viber" width="24" height="24">
+                    </a>
+                  </div>
+                  <div class="social__ref">
+                    <a href="#">
+                      <img src="img/telegram.svg" alt="Telegram" width="22" height="17">
+                    </a>
+                  </div>
                 </div>
               </div>
             </form>
