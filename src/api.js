@@ -10,6 +10,8 @@ export default class Api {
         body: formData
       });
 
+      console.log(response.status)
+
       if (response.status >= 200 && response.status < 300) {
         alert('Данные успешно загружены');
         return response;

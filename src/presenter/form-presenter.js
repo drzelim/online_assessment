@@ -28,6 +28,11 @@ export default class FormPresenter {
 
     this._files = [];
     this._previews = [];
+
+    this._formSubmitHandler = this._formSubmitHandler.bind(this);
+    this._changeMetalType = this._changeMetalType.bind(this);
+
+    this._currentComponent.setChangeMetalTypeHandler(this._changeMetalType);
   }
 
   init() {
@@ -56,6 +61,7 @@ export default class FormPresenter {
       case ProductType.JEWEL:
         remove(this._currentComponent);
         this._currentComponent = new Jewel();
+        this._currentComponent.setChangeMetalTypeHandler(this._changeMetalType);
         this._render();
         break;
       case ProductType.GEMS:
@@ -134,30 +140,33 @@ export default class FormPresenter {
   }
 
   _fetchData() {
-    this._form.addEventListener('submit', async (evt) => {
-      evt.preventDefault();
+    this._form.addEventListener('submit', this._formSubmitHandler);
+  }
 
-      console.log(this._emailField.validity)
-      console.log(this._phoneField.validity)
+  async _formSubmitHandler(evt) {
+    evt.preventDefault();
 
-      if (this._emailField.value === '' && this._phoneField.value === '') {
-        alert('Должно быть заполнено хотя бы одно поле: email или Телефон');
-        return;
-      }
+    if (this._emailField.value === '' && this._phoneField.value === '') {
+      alert('Должно быть заполнено хотя бы одно поле: email или Телефон');
+      return;
+    }
 
-      const formData = new FormData(this._form);
-      formData.delete('photos');
-      this._files.forEach((item, index) => {
-        formData.append('photo_' + index + 1, item);
-      });
-
-      const response = await this._api.init(formData);
-      if (response.ok) {
-        this._clearPhotoContainer();
-        this._inputPhotos.value = '';
-        this._files = [];
-        this._form.reset();
-      }
+    const formData = new FormData(this._form);
+    formData.delete('photos');
+    this._files.forEach((item, index) => {
+      formData.append('photo_' + index + 1, item);
     });
+
+    const response = await this._api.init(formData);
+    if (response.ok) {
+      this._clearPhotoContainer();
+      this._inputPhotos.value = '';
+      this._files = [];
+      this._form.reset();
+    }
+  }
+
+  _changeMetalType(evt) {
+    this._currentComponent.updateMetalType(evt.target.value);
   }
 }

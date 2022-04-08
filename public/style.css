@@ -33,6 +33,7 @@
 .assessment__wrapper {
   display: flex;
   justify-content: space-between;
+  margin: auto;
 }
 
 .assessment__form-wrapper {
@@ -47,13 +48,15 @@
 .assessment h2 {
   margin: auto;
   margin-top: 50px;
-  width: 1280px;
+  max-width: 1280px;
   text-align: center;
 }
 
 .assessment__input-wrapper {
   max-width: 740px;
+  margin: auto;
   margin-right: 50px;
+
 }
 
 .assessment__static-entry-fields {
@@ -65,7 +68,7 @@
 .assessment__input {
   max-width: 360px;
   width: 100%;
-  min-width: 260px;
+  min-width: 300px;
   height: 57px;
   padding: 6px 12px;
 
@@ -111,6 +114,11 @@
   cursor: pointer;
 }
 
+.assessment__sample-text {
+  color: #888888;
+  margin-left: 5px;
+}
+
 .assessment__footer {
   max-width: 740px;
 
@@ -122,7 +130,7 @@
 .assessment__form-submit {
   max-width: 360px;
   width: 100%;
-  min-width: 260px;
+  min-width: 300px;
   height: 57px;
 
   margin-bottom: 20px;
@@ -140,13 +148,15 @@
 .social {
   display: flex;
   justify-content: space-between;
+  min-width: 300px;
 }
 
 .social__info {
   color: #888888;
   font-size: 16px;
   line-height: 24px;
-  margin-right: 20px;
+  margin-right: 15px;
+  max-width: 160px;
 }
 
 .social__ref {
@@ -271,6 +281,10 @@
   .assessment__input {
     max-width: none;
   }
+
+  .assessment__photo-container {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 
@@ -281,5 +295,21 @@
 
   .assessment__input {
     max-width: 300px;
+  }
+
+  .assessment__comment-field {
+    max-width: 300px;
+  }
+
+  .assessment__photo {
+    width: 300px;
+  }
+
+  .assessment__form-wrapper {
+    padding: 20px;
+  }
+
+  .assessment__footer {
+    margin-top: 20px;
   }
 }
