@@ -1,11 +1,5 @@
+import { MetalType } from "../utils/const";
 import Smart from "./smart";
-
-const MetalType = {
-  GOLD: 'gold',
-  SILVER: 'silver',
-  PLATINUM: 'platinum',
-  PALLADIUM: 'palladium'
-};
 
 const createSample = (metal) => {
   switch(metal) {
@@ -74,7 +68,7 @@ const createJewelTemplate = (metalType) => {
         <option value="palladium" ${metalType === MetalType.PALLADIUM && 'selected'}>Палладий</option>
       </select>
       ${createSample(metalType)}
-      <input class="assessment__input assessment__input--dynamic" name="weight" type="number" step="0.1" placeholder="Вес">
+      <input class="assessment__input assessment__input--dynamic" name="weight" type="number" step="0.1" placeholder="Вес" id="assessment-weight">
     </div>`
   );
 };
@@ -86,6 +80,9 @@ export default class Jewel extends Smart {
     this._currentMetalType = MetalType.GOLD;
 
     this._changeMetalTypeHandler = this._changeMetalTypeHandler.bind(this);
+    this._setWeightValidatyHandler = this._setWeightValidatyHandler.bind(this);
+
+    this._setWeightValidatyHandler();
   }
 
   getTemplate() {
@@ -108,6 +105,15 @@ export default class Jewel extends Smart {
   updateMetalType(metalType) {
     this._currentMetalType = metalType;
     this.updateElement();
+  }
+
+  _setWeightValidatyHandler() {
+    const weight = this.getElement().querySelector('#assessment-weight');
+    weight.addEventListener('input', (evt) => {
+      if (weight.validity.stepMismatch) {
+        weight.value = weight.value.slice(0, weight.value.length - 1);
+      }
+    });
   }
 }
 

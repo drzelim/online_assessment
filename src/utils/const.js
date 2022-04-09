@@ -11,3 +11,10 @@ export const RenderPosition = {
   AFTERBEGIN: 'afterbegin',
   BEFOREEND: 'beforeend'
 };
+
+export const MetalType = {
+  GOLD: 'gold',
+  SILVER: 'silver',
+  PLATINUM: 'platinum',
+  PALLADIUM: 'palladium'
+};

@@ -276,6 +276,27 @@
   line-height: 24px;
 }
 
+.assessment__invalid-message {
+  color: red;
+  margin-bottom: 15px;
+
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.assessment__input--invalid,
+.assessment__input--invalid:hover,
+.assessment__input--invalid:focus {
+  outline: 2px solid red;
+}
+
 
 @media(max-width: 1170px) {
   .assessment__input {

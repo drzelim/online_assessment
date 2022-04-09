@@ -7,7 +7,7 @@ import Preview from "../components/preview";
 import { ProductType } from "../utils/const";
 import { remove, render } from "../utils/render";
 
-const FILE_TYPES = ['.png', '.jpg', '.jpeg', '.gif'];
+const FILE_TYPES = ['.png', '.jpg', '.jpeg', '.gif', 'heic', 'heif'];
 const MAX_IMAGE = 9;
 
 export default class FormPresenter {
@@ -21,10 +21,11 @@ export default class FormPresenter {
     this._container = null;
     this._emailField = null;
     this._phoneField = null;
+    this._invalidMessage = null;
+    this._buttonSubmit = null;
 
     this._currentValue = ProductType.JEWEL;
-
-    this._currentComponent = new Jewel();
+    this._currentComponent =  new Jewel();
 
     this._files = [];
     this._previews = [];
@@ -39,11 +40,20 @@ export default class FormPresenter {
     this._container = this._assessment.querySelector('#assessment-root');
     this._emailField = this._assessment.querySelector('.assessment__user-email');
     this._phoneField = this._assessment.querySelector('.assessment__user-tel');
+    this._buttonSubmit = this._assessment.querySelector('.assessment__form-submit');
 
     this._render();
     this._addPreviewHandler();
     this._fetchData();
     this._deletePhotoHandler();
+    this._addPhoneFieldMask();
+  }
+
+  _addPhoneFieldMask() {
+    const maskOptions = {
+      mask: '+{7}(000) 000-00-00'
+    };
+    IMask(this._phoneField, maskOptions);
   }
 
   _render() {
@@ -54,35 +64,32 @@ export default class FormPresenter {
     if (value === this._currentValue) {
       return;
     }
-
     this._currentValue = value;
 
     switch(value) {
       case ProductType.JEWEL:
-        remove(this._currentComponent);
-        this._currentComponent = new Jewel();
+        this._renderCurrentComponent(Jewel);
         this._currentComponent.setChangeMetalTypeHandler(this._changeMetalType);
-        this._render();
         break;
       case ProductType.GEMS:
-        remove(this._currentComponent);
-        this._currentComponent = new Gems();
-        this._render();
+        this._renderCurrentComponent(Gems);
         break;
       case ProductType.FUR_COAT:
-        remove(this._currentComponent);
-        this._currentComponent = new FurCoat();
-        this._render();
+        this._renderCurrentComponent(FurCoat);
         break;
       case ProductType.APPLE:
-        remove(this._currentComponent);
-        this._currentComponent = new Apple();
-        this._render();
+        this._renderCurrentComponent(Apple);
         break;
       default:
         remove(this._currentComponent);
         break;
     }
+  }
+
+  _renderCurrentComponent(CurrentComponent) {
+    remove(this._currentComponent);
+    this._currentComponent = new CurrentComponent();
+    this._render();
   }
 
   _addPreviewHandler() {
@@ -143,30 +150,78 @@ export default class FormPresenter {
     this._form.addEventListener('submit', this._formSubmitHandler);
   }
 
+  _validatyCheck() {
+    let valid = true
+    if (this._emailField.value === '' && this._phoneField.value === '') {
+      this._invalidMessage = this._assessment.querySelector('.assessment__invalid-message');
+      this._invalidMessage.classList.add('show');
+      this._emailField.classList.add('assessment__input--invalid');
+      this._phoneField.classList.add('assessment__input--invalid');
+      return valid = false;
+    }
+
+    if (this._invalidMessage && this._invalidMessage.classList.contains('show')) {
+      this._invalidMessage.classList.remove('show');
+      this._emailField.classList.remove('assessment__input--invalid');
+      this._phoneField.classList.remove('assessment__input--invalid');
+      valid = true;
+    }
+    return valid;
+  }
+
   async _formSubmitHandler(evt) {
     evt.preventDefault();
+    const valid = this._validatyCheck();
 
-    if (this._emailField.value === '' && this._phoneField.value === '') {
-      alert('Должно быть заполнено хотя бы одно поле: email или Телефон');
+    if (!valid) {
       return;
     }
 
     const formData = new FormData(this._form);
     formData.delete('photos');
-    this._files.forEach((item, index) => {
-      formData.append('photo_' + index + 1, item);
+
+    // const blobArray = []
+    // this._files.forEach((item) => blobArray.push(new Blob([item], {type: 'image/jpg'})))
+    // blobArray.forEach((i, index) => formData.append('photos[]', i));
+
+    this._files.forEach((item) => {
+      formData.append('photos[]', item);
     });
 
     const response = await this._api.init(formData);
-    if (response.ok) {
-      this._clearPhotoContainer();
-      this._inputPhotos.value = '';
-      this._files = [];
-      this._form.reset();
+
+    try {
+      this._buttonSubmit.setAttribute('disabled', true);
+      this._buttonSubmit.style.opacity = 0.3;
+
+      if (response.status >= 200 && response.status < 300) {
+        alert('Данные успешно загружены');
+        this._formReset();
+        return response;
+      }
+
+      alert(`Ошибка ${response.status}`);
+
+    } catch {
+      alert('Прозошла ошибка, попробуйте позже');
+
+    } finally {
+      this._buttonSubmit.removeAttribute('disabled');
+      this._buttonSubmit.style.opacity = 1;
     }
   }
 
   _changeMetalType(evt) {
     this._currentComponent.updateMetalType(evt.target.value);
+  }
+
+  _formReset() {
+    this._clearPhotoContainer();
+    this._inputPhotos.value = '';
+    this._files = [];
+    this._form.reset();
+    remove(this._currentComponent);
+    this._currentComponent = new Jewel();
+    this._render();
   }
 }

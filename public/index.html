@@ -15,9 +15,9 @@
               <div class="assessment__wrapper">
                 <div class="assessment__input-wrapper">
                   <div class="assessment__static-entry-fields">
-                    <input class="assessment__input assessment__username" name="user-name" type="text" placeholder="Введите имя" required>
+                    <input class="assessment__input assessment__username" name="user-name" type="text" placeholder="Введите имя*" required>
                     <input type="email" class="assessment__input assessment__user-email" name="email" placeholder="Введите email">
-                    <input type="tel" class="assessment__input assessment__user-tel" name="tel" placeholder="Телефон">
+                    <input type="tel" class="assessment__input assessment__user-tel" name="tel" placeholder="Телефон" pattern="^[+][0-9][(][0-9]{3}[)] [0-9]{3}[-][0-9]{2}[-][0-9]{2}$">
                     <select class="assessment__input" name="type" id="assessment-select">
                       <option value="jewel" selected>Ювелирное изделие</option>
                       <option value="gems">Драгоценные камни</option>
@@ -34,6 +34,7 @@
                   <div class="assessment__comment">
                       <textarea class="assessment__comment-field" name="comment" cols="40" rows="3" placeholder="Дополнительная информация"></textarea>
                   </div>
+                  <span class="assessment__invalid-message">Должно быть заполнено хотя бы одно поле: email или Телефон</span>
                 </div>
                 <div class="assessment__photo">
                   <div class="assessment__photo-upload">
@@ -79,5 +80,6 @@
 
     </div>
     <script src="bundle.js" defer></script>
+    <script type="text/javascript" src="https://unpkg.com/imask"></script>
 </body>
 </html>
