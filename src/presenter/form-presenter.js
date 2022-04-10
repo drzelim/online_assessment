@@ -190,6 +190,8 @@ export default class FormPresenter {
 
     const response = await this._api.init(formData);
 
+    this._assessment.classList.contains('modal-error') && this._assessment.classList.remove('modal-error');
+
     try {
       this._buttonSubmit.setAttribute('disabled', true);
       this._buttonSubmit.style.opacity = 0.3;
@@ -201,9 +203,11 @@ export default class FormPresenter {
       }
 
       alert(`Ошибка ${response.status}`);
+      this._assessment.classList.add('modal-error');
 
     } catch {
       alert('Прозошла ошибка, попробуйте позже');
+      this._assessment.classList.add('modal-error');
 
     } finally {
       this._buttonSubmit.removeAttribute('disabled');

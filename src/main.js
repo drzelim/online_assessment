@@ -1,7 +1,7 @@
 import FormPresenter from "./presenter/form-presenter";
 import Api from "./api";
 
-const URL = 'http://127.0.0.1:5000/test';
+const URL = 'kokookok.ko';
 
 const assessment = document.querySelector('#assessment');
 const select = assessment.querySelector('#assessment-select');
