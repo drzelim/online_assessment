@@ -226,6 +226,7 @@ export default class FormPresenter {
     this._form.reset();
     remove(this._currentComponent);
     this._currentComponent = new Jewel();
+    this._currentValue = ProductType.JEWEL;
     this._render();
   }
 }
