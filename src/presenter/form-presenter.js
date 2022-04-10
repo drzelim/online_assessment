@@ -188,15 +188,15 @@ export default class FormPresenter {
       formData.append('photos[]', item);
     });
 
+    this._buttonSubmit.setAttribute('disabled', true);
+    this._buttonSubmit.style.opacity = 0.3;
+
     const response = await this._api.init(formData);
 
     this._assessment.classList.contains('modal-error') && this._assessment.classList.remove('modal-error');
 
     try {
-      this._buttonSubmit.setAttribute('disabled', true);
-      this._buttonSubmit.style.opacity = 0.3;
-
-      if (response.status >= 200 && response.status < 300) {
+        if (response.status >= 200 && response.status < 300) {
         alert('Данные успешно загружены');
         this._formReset();
         return response;
