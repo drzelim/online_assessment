@@ -104,7 +104,7 @@ export default class FormPresenter {
 
       this._clearPhotoContainer();
 
-      this._files.forEach( (file) => {
+      this._files.forEach( (file, index) => {
         const fileName = file.name.toLowerCase();
         const matches = FILE_TYPES.some((it) => {
           return fileName.endsWith(it)
@@ -122,6 +122,8 @@ export default class FormPresenter {
           });
 
           reader.readAsDataURL(file);
+        } else {
+          this._files.splice(index, 1);
         }
       });
     });
